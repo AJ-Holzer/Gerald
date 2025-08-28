@@ -10,7 +10,7 @@ module.exports = async (client, member, db) => {
     if (!channel || !channel.isTextBased()) return;
 
     await channel.send(
-      `👋 Hello ${member.user}, welcome to **${member.guild.name}**!`
+      `👋 Hello ${member.user}, welcome to **${member.guild.name}**! Introduce yourself using \`/introduce\`!`
     );
   } catch (err) {
     console.error("Error sending welcome:", err);
