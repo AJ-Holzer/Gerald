@@ -21,7 +21,12 @@ client.on("clientReady", (cli) => {
 
 // Log messages entered in the dc chat for testing purpose
 client.on("messageCreate", (msg) => {
-  console.log(msg);
+  // Skip if author is a bot
+  if (msg.author.bot) {
+    return;
+  }
+
+  console.log(msg.content);
 });
 
 // Login the bot
