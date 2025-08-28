@@ -1,4 +1,4 @@
-const { testServer } = require("../../../config.json");
+const { development, testServer } = require("../../../config.json");
 const areCommandsDifferent = require("../../utils/areCommandsDifferent");
 const getApplicationCommands = require("../../utils/getApplicationCommands");
 const getLocalCommands = require("../../utils/getLocalCommands");
@@ -7,20 +7,22 @@ module.exports = async (client) => {
   try {
     const localCommands = getLocalCommands();
 
-    // Register in test server (fast updates)
-    if (testServer) {
+    if (development === true && testServer) {
+      // Register commands only in the dev/test server
       const guildCommands = await getApplicationCommands(client, testServer);
-
       for (const localCommand of localCommands) {
         await handleCommand(localCommand, guildCommands);
       }
-    }
-
-    // Register globally (all servers)
-    const globalCommands = await getApplicationCommands(client, null);
-
-    for (const localCommand of localCommands) {
-      await handleCommand(localCommand, globalCommands);
+      console.log(
+        "🛠 Development mode: commands registered only in test server."
+      );
+    } else if (development === false) {
+      // Register commands globally
+      const globalCommands = await getApplicationCommands(client, null);
+      for (const localCommand of localCommands) {
+        await handleCommand(localCommand, globalCommands);
+      }
+      console.log("🚀 Production mode: commands registered globally.");
     }
   } catch (error) {
     console.log(`❌ Error registering commands: ${error}`);
