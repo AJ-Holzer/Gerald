@@ -14,14 +14,16 @@ module.exports = {
 
   callback: async (client, interaction, db) => {
     const text = interaction.options.getString("text");
+    const userId = interaction.user.id;
+    const guildId = interaction.guild.id;
 
     const stmt = db.prepare(`
-      INSERT INTO introductions (user_id, text)
-      VALUES (?, ?)
-      ON CONFLICT(user_id) DO UPDATE SET text=excluded.text
+      INSERT INTO introductions (guild_id, user_id, text)
+      VALUES (?, ?, ?)
+      ON CONFLICT(guild_id, user_id) DO UPDATE SET text=excluded.text
     `);
 
-    stmt.run(interaction.user.id, text);
+    stmt.run(guildId, userId, text);
 
     await interaction.reply(
       `✅ Your introduction has been set! View with \`/whois\`!`

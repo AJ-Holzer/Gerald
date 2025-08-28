@@ -16,8 +16,10 @@ module.exports = {
     const user = interaction.options.getUser("user") || interaction.user;
 
     const row = db
-      .prepare("SELECT text FROM introductions WHERE user_id = ?")
-      .get(user.id);
+      .prepare(
+        "SELECT text FROM introductions WHERE guild_id = ? AND user_id = ?"
+      )
+      .get(interaction.guild.id, user.id);
 
     if (!row) {
       return interaction.reply({

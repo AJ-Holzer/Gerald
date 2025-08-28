@@ -19,8 +19,10 @@ db.prepare(
 db.prepare(
   `
   CREATE TABLE IF NOT EXISTS introductions (
-    user_id TEXT PRIMARY KEY,
-    text TEXT NOT NULL
+    user_id   TEXT NOT NULL,
+    guild_id  TEXT NOT NULL,
+    text      TEXT,
+    PRIMARY KEY (user_id, guild_id)
   );
   `
 ).run();

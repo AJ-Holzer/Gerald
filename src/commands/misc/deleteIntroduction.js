@@ -3,8 +3,10 @@ module.exports = {
   description: "Deletes your personal introduction.",
 
   callback: async (client, interaction, db) => {
-    const stmt = db.prepare("DELETE FROM introductions WHERE user_id = ?");
-    const result = stmt.run(interaction.user.id);
+    const stmt = db.prepare(
+      "DELETE FROM introductions WHERE guild_id = ? AND user_id = ?"
+    );
+    const result = stmt.run(interaction.guild.id, interaction.user.id);
 
     if (result.changes === 0) {
       await interaction.reply({
