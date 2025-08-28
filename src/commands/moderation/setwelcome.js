@@ -1,4 +1,7 @@
-const { PermissionFlagsBits } = require("discord.js");
+const {
+  PermissionFlagsBits,
+  ApplicationCommandOptionType,
+} = require("discord.js");
 
 module.exports = {
   name: "setwelcome",
@@ -7,7 +10,7 @@ module.exports = {
     {
       name: "channel",
       description: "The channel to send welcome messages in.",
-      type: 7, // CHANNEL type
+      type: ApplicationCommandOptionType.Channel,
       required: true,
     },
   ],

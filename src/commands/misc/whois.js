@@ -1,3 +1,5 @@
+const { ApplicationCommandOptionType } = require("discord.js");
+
 module.exports = {
   name: "whois",
   description: "See someone's introduction.",
@@ -5,8 +7,8 @@ module.exports = {
     {
       name: "user",
       description: "The user to view the intro of.",
-      type: 6, // USER
-      required: false,
+      type: ApplicationCommandOptionType.User,
+      required: true,
     },
   ],
 
@@ -18,11 +20,15 @@ module.exports = {
       .get(user.id);
 
     if (!row) {
-      return interaction.reply(
-        `❌ ${user.username} has not set an introduction yet.`
-      );
+      return interaction.reply({
+        content: `❌ ${user.username} has not set an introduction yet.`,
+        flags: ["Ephemeral"],
+      });
     }
 
-    await interaction.reply(`📖 **${user.username}'s intro:**\n${row.text}`);
+    await interaction.reply({
+      content: `📖 **${user.username}'s intro:**\n${row.text}`,
+      flags: ["Ephemeral"],
+    });
   },
 };

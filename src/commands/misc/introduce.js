@@ -1,3 +1,5 @@
+const { ApplicationCommandOptionType } = require("discord.js");
+
 module.exports = {
   name: "introduce",
   description: "Set or update your personal introduction.",
@@ -5,7 +7,7 @@ module.exports = {
     {
       name: "text",
       description: "Your introduction text.",
-      type: 3, // STRING
+      type: ApplicationCommandOptionType.String,
       required: true,
     },
   ],
