@@ -37,7 +37,7 @@ module.exports = {
    * @param {Client} client
    * @param {Interaction} interaction
    */
-  callback: async (client, interaction) => {
+  callback: async (client, interaction, db) => {
     const mentionable = interaction.options.get("target-user").value;
     const duration = interaction.options.get("duration").value; // 1s 1m 1h 1d
     const reason =
