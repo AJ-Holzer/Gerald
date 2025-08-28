@@ -10,7 +10,7 @@ module.exports = {
 
     if (result.changes === 0) {
       await interaction.reply({
-        content: "❌ You don’t have an introduction set to delete.",
+        content: "❌ You don't have an introduction set to delete.",
         flags: ["Ephemeral"],
       });
     } else {

@@ -26,7 +26,7 @@ module.exports = {
     stmt.run(guildId, userId, text);
 
     await interaction.reply(
-      `✅ Your introduction has been set! View with \`/whois\`!`
+      `✅ I noted down your introduction! View with \`/whois\`!`
     );
   },
 };

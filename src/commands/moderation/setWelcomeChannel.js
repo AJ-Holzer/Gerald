@@ -4,7 +4,7 @@ const {
 } = require("discord.js");
 
 module.exports = {
-  name: "setwelcome",
+  name: "set-welcome-channel",
   description: "Set the channel where welcome messages are sent.",
   options: [
     {

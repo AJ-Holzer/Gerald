@@ -7,7 +7,7 @@ const { dbFile } = require("../config.json");
 // Open or create a local SQLite file
 const db = new Database(dbFile);
 
-// Example: create a table if it doesn’t exist
+// Example: create a table if it doesn't exist
 db.prepare(
   `
   CREATE TABLE IF NOT EXISTS welcome_channels (
