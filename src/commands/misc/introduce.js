@@ -23,6 +23,8 @@ module.exports = {
 
     stmt.run(interaction.user.id, text);
 
-    await interaction.reply(`✅ Your introduction has been set!`);
+    await interaction.reply(
+      `✅ Your introduction has been set! View with \`/whois\`!`
+    );
   },
 };
