@@ -1,7 +1,5 @@
 require("dotenv").config();
-
-// Variables
-const token = process.env.BOT_TOKEN;
+const eventHandler = require("./handlers/eventHandler");
 
 const { Client, IntentsBitField } = require("discord.js");
 
@@ -14,20 +12,7 @@ const client = new Client({
   ],
 });
 
-// Log if bot is online
-client.on("clientReady", (cli) => {
-  console.log(`✅ ${cli.user.username} is online.`);
-});
-
-// Log messages entered in the dc chat for testing purpose
-client.on("messageCreate", (msg) => {
-  // Skip if author is a bot
-  if (msg.author.bot) {
-    return;
-  }
-
-  console.log(msg.content);
-});
+eventHandler(client);
 
 // Login the bot
-client.login(token);
+client.login(process.env.BOT_TOKEN);
