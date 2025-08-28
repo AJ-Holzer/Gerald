@@ -1,0 +1,10 @@
+*.env
+*.log
+*.old
+*test*
+/.history/
+/.old/
+/.tests/
+/.trash/
+/.vscode/
+/node_modules/
