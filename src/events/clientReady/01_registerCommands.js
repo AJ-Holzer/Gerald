@@ -7,7 +7,7 @@ module.exports = async (client) => {
   try {
     const localCommands = getLocalCommands();
 
-    if (development === true && testServer) {
+    if (development && testServer) {
       // Register commands only in the dev/test server
       const guildCommands = await getApplicationCommands(client, testServer);
       for (const localCommand of localCommands) {
@@ -16,7 +16,9 @@ module.exports = async (client) => {
       console.log(
         "🛠 Development mode: commands registered only in test server."
       );
-    } else if (development === false) {
+    }
+
+    if (!development) {
       // Register commands globally
       const globalCommands = await getApplicationCommands(client, null);
       for (const localCommand of localCommands) {
