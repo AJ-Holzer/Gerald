@@ -66,7 +66,7 @@ module.exports = {
 
     if (msDuration < 5_000 || msDuration > 2.419e9) {
       await interaction.editReply(
-        "Timeout duration cannot be less than 5 seconds or 28 days."
+        "Timeout duration cannot be less than 5 seconds or more than 28 days."
       );
       return;
     }
